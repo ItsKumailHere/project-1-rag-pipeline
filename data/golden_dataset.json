@@ -1,0 +1,17 @@
+[
+  {
+    "document_id": "01-engineering-handbook.md",
+    "text": "# Engineering Handbook\n\n## CI/CD Pipeline\nOur deployment pipeline uses GitHub Actions. All PRs must pass the `lint`, `test`, and `build` jobs before they can be merged. We require a minimum of 80% test coverage. Deployments to production happen automatically when code is merged to the `main` branch, but only during the deployment window of 09:00 - 15:00 UTC, Monday through Thursday.",
+    "metadata": {"type": "handbook", "department": "engineering"}
+  },
+  {
+    "document_id": "02-billing-runbook.md",
+    "text": "# Billing Support Runbook\n\n## Handling Duplicate Charges\nIf a customer reports a duplicate charge, first verify the transactions in the Stripe dashboard. If two charges occurred within 5 minutes of each other for the exact same amount, it is likely a system glitch. In this case, refund the second charge immediately and apologize to the customer. If the charges are separated by more than 24 hours, ask the customer if they intentionally made a second purchase before issuing any refunds.",
+    "metadata": {"type": "runbook", "department": "support"}
+  },
+  {
+    "document_id": "03-incident-2024-q3.md",
+    "text": "# Incident Report: 2024 Q3 Database Outage\n\n**Date**: August 14, 2024\n**Duration**: 42 minutes\n\n**Summary**:\nAt 14:22 UTC, the primary PostgreSQL database ran out of disk space, causing all write operations to fail. This cascaded into a site-wide 500 error for all logged-in users.\n\n**Root Cause**:\nA new logging service was accidentally configured to write verbose debug logs directly to the primary database volume instead of the dedicated logging cluster. The 500GB volume filled up in less than 2 hours.\n\n**Resolution**:\nThe database volume was expanded to 2TB, and the logging service configuration was corrected to point to the ELK stack. Service was restored at 15:04 UTC.",
+    "metadata": {"type": "incident", "severity": "high"}
+  }
+]
